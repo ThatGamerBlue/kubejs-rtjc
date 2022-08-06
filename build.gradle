@@ -1,5 +1,6 @@
 plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 
@@ -148,7 +149,21 @@ jar {
     }
 }
 
-jar.finalizedBy('reobfJar')
+shadowJar {
+    dependencies {
+        include(dependency('org.javassist:javassist:.*'))
+    }
+
+    relocate 'javassist', 'com.thatgamerblue.kubejsrtjc.javassist'
+
+    classifier ''
+
+    finalizedBy('reobfJar')
+}
+
+build.dependsOn {
+    shadowJar
+}
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation

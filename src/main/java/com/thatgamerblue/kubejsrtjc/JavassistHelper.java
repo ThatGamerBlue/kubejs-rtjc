@@ -2,6 +2,7 @@ package com.thatgamerblue.kubejsrtjc;
 
 import dev.latvian.mods.rhino.NativeJavaClass;
 import dev.latvian.mods.rhino.Scriptable;
+import javassist.ClassClassPath;
 import javassist.ClassPool;
 
 public class JavassistHelper {
@@ -9,6 +10,8 @@ public class JavassistHelper {
 
 	public static CtClassJS createClass() {
 		ClassPool pool = ClassPool.getDefault();
+		// this gets forge-loaded classes on the classpath in release
+		pool.insertClassPath(new ClassClassPath(JavassistHelper.class));
 		return new CtClassJS(pool.makeClass("com.thatgamerblue.kubejsrtjc.JavassistHelper$GeneratedClass" + count++));
 	}
 

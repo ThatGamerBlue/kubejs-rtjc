@@ -27,6 +27,8 @@ onEvent("player.chat", (event) => {
 
 As you can see, everything that isn't in the java.lang package (and isn't a primitive, obviously) has to be used by its fully-qualified name. This is because I don't know how to make Javassist use imports, and to be honest I don't think it can. If anyone knows how please make a PR to fix it, thanks. My preferred API would be `jankBuilder.addImport("dev.latvian.kubejs.util.*")` but to be honest anything that works would be nicer than what I have.
 
+To see the generated class files, enable debug mode by using `rtjcSettings.debug = true`, class files will be written to logs/kubejs/rtjc
+
 ### Compiling
 Hopefully, if I've done everything right, you should just be able to clone this repository, import it into your IDE of choice, and run the build task in gradle. If not, please let me know, joking aside I'm a big believer in "download and build" and if any of my intended-for-the-public projects don't work like that, I'd like to fix it.
 

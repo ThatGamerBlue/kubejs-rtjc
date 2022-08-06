@@ -1,7 +1,7 @@
 package com.thatgamerblue.kubejsrtjc;
 
+import dev.latvian.kubejs.script.BindingsEvent;
 import dev.latvian.mods.rhino.NativeJavaClass;
-import dev.latvian.mods.rhino.Scriptable;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
 
@@ -15,7 +15,7 @@ public class JavassistHelper {
 		return new CtClassJS(pool.makeClass("com.thatgamerblue.kubejsrtjc.JavassistHelper$GeneratedClass" + count++));
 	}
 
-	public static NativeJavaClass finalizeClass(Scriptable scope, Object[] args) {
-		return ((CtClassJS) args[0]).__finalize(scope);
+	public static NativeJavaClass finalizeClass(BindingsEvent event, Object[] args) {
+		return ((CtClassJS) args[0]).finalize(event);
 	}
 }

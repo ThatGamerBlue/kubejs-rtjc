@@ -7,15 +7,16 @@ KubeJS: RTJC is a plugin for KubeJS that allows you to compile and run Java code
 On the bright side, I've included a simple example of how to use it right under this line I'm typing right now that'll end any moment now in 5... 4... 3... no wait please be quiet in the back there, I can hear you shuffling and it's very distracting, let's start again. 5... 4... 3... 2... 1... example time!
 ### Usage
 ```js
+addImport("dev.latvian.kubejs.util")
 jankBuilder = createClass()
-jankBuilder.addMethod("public static void tell(dev.latvian.kubejs.util.MessageSender target, String message) {" +
+jankBuilder.addMethod("public static void tell(MessageSender target, String message) {" +
     "target.tell(new net.minecraft.util.text.StringTextComponent(message));" +
     "}");
-jankBuilder.addMethod("public static String getName(dev.latvian.kubejs.util.MessageSender target) {" +
+jankBuilder.addMethod("public static String getName(MessageSender target) {" +
     "return target.getName().toString();" +
     "}");
 jank = finalizeClass(jankBuilder)
-
+removeImport("dev.latvian.kubejs.util")
 
 
 onEvent("player.chat", (event) => {
@@ -25,7 +26,7 @@ onEvent("player.chat", (event) => {
 })
 ```
 
-As you can see, everything that isn't in the java.lang package (and isn't a primitive, obviously) has to be used by its fully-qualified name. This is because I don't know how to make Javassist use imports, and to be honest I don't think it can. If anyone knows how please make a PR to fix it, thanks. My preferred API would be `jankBuilder.addImport("dev.latvian.kubejs.util.*")` but to be honest anything that works would be nicer than what I have.
+You can use imports by using the `addImport` function, but beware all imports are `.*`, and are global, not per-class, so be careful of conflicting imports, as you may accidentally use the wrong class. To resolve conflicts you can either use the fully qualified name of a class, or if import pollution is your issue, `removeImport` will undo an imported package.
 
 To see the generated class files, enable debug mode by using `rtjcSettings.debug = true`, class files will be written to logs/kubejs/rtjc
 

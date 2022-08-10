@@ -26,7 +26,7 @@ onEvent("player.chat", (event) => {
 })
 ```
 
-You can use imports by using the `addImport` function, but beware all imports are `.*`, and are global, not per-class, so be careful of conflicting imports, as you may accidentally use the wrong class. To resolve conflicts you can either use the fully qualified name of a class, or if import pollution is your issue, `removeImport` will undo an imported package.
+You can use imports by using the `addImport` function, you can import `.*` by not including the .* part, or import per-class by using the fully qualified name. To resolve conflicts you can either use the fully qualified name of a class, or if import pollution is your issue, `removeImport` will undo an import.
 
 To see the generated class files, enable debug mode by using `rtjcSettings.debug = true`, class files will be written to logs/kubejs/rtjc
 

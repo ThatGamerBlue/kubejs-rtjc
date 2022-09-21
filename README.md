@@ -1,4 +1,5 @@
 ## KubeJS: RTJC (Runtime Java Compiler)
+[CurseForge](https://www.curseforge.com/minecraft/mc-mods/kubejs-rtjc)
 ### Introduction
 This mod is a proof of concept, OK? Please don't use it in anything serious. It might break at random, or do wacky uncharacteristic things at any given point. Got it? Okay, on with the show.
 
